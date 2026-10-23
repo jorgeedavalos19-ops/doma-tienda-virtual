@@ -1,0 +1,18 @@
+{
+  "name": "doma-tienda-virtual",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Prototipo funcional de tienda virtual con API y persistencia centralizada.",
+  "scripts": {
+    "start": "node server-cloud.js",
+    "start:local": "node server.js",
+    "dev": "node --watch server-cloud.js",
+    "db:check": "node scripts/check-db.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}

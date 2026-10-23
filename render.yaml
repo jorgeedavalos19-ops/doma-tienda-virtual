@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: doma-tienda-api
+    runtime: node
+    buildCommand: npm install
+    startCommand: node server-cloud.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: PUBLIC_URL
+        sync: false
+databases:
+  - name: doma-tienda-db
+    databaseName: doma
+    user: doma

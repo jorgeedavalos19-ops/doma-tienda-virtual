@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DOMA — Administración</title>
+  <style>
+    :root{font-family:Arial,sans-serif;color:#20241f;background:#f8f7f4}*{box-sizing:border-box}body{margin:0}header{padding:22px 7%;border-bottom:1px solid #ddd;display:flex;justify-content:space-between;align-items:center;background:#fff}header a{color:#334c3e}.wrap{max-width:1200px;margin:40px auto;padding:0 24px}.card{background:#fff;border:1px solid #ddd;padding:22px;margin:20px 0;border-radius:8px}.login{max-width:420px;margin:auto}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.metric{background:#334c3e;color:#fff;padding:15px;border-radius:6px}.metric b{display:block;font-size:25px;margin-top:8px}input,textarea,button,select{padding:10px;border:1px solid #d5d5d5;border-radius:5px;font:inherit}textarea{min-height:80px;resize:vertical}form{display:grid;gap:10px}.btn{background:#334c3e;color:#fff;border:0;cursor:pointer}.btn-danger{background:#963f35;color:#fff;border:0;cursor:pointer}.btn-secondary{background:#fff;color:#334c3e;border:1px solid #334c3e;cursor:pointer}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px}.order{border-top:1px solid #ddd;padding:14px 0}.product{border-top:1px solid #ddd;padding:16px 0;display:flex;justify-content:space-between;gap:16px}.product:first-child{border-top:0}.product-info{flex:1}.product-actions{white-space:nowrap}.variant-row{display:grid;grid-template-columns:1fr 1fr 110px auto;gap:8px;align-items:center}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.full{grid-column:1/-1}.message{color:#963f35;min-height:20px}.success{color:#2e704b}.muted{color:#666;font-size:13px}.checkbox{display:flex;align-items:center;gap:8px}@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.variant-row{grid-template-columns:1fr 1fr}.variant-row button{grid-column:1/-1}.product{display:block}.product-actions{margin-top:12px}}
+  </style>
+</head>
+<body>
+  <header><b>DOMA / ADMIN</b><a href="/">Volver a la tienda</a></header>
+  <main class="wrap">
+    <section id="login" class="card login"><h2>Acceso administrativo</h2><form id="login-form"><input name="email" type="email" value="admin@doma.local" required><input name="password" type="password" placeholder="Contraseña" required><button class="btn">Ingresar</button></form><p id="message" class="message"></p></section>
+    <section id="panel" hidden><div id="metrics" class="grid"></div>
+      <div class="card"><div class="toolbar"><h2>Productos</h2><button id="logout" class="btn-secondary">Cerrar sesión</button></div><p class="muted">Desde acá podés agregar productos nuevos o quitarlos de la tienda.</p>
+        <form id="product-form"><div class="form-grid"><input name="name" placeholder="Nombre del producto" required><input name="category" placeholder="Categoría" value="General"><input name="price" type="number" min="1" step="0.01" placeholder="Precio" required><input name="previousPrice" type="number" min="0" step="0.01" placeholder="Precio anterior (opcional)"><input name="image" class="full" type="url" placeholder="URL de imagen (opcional)"><textarea name="description" class="full" placeholder="Descripción"></textarea></div><label class="checkbox"><input name="featured" type="checkbox"> Mostrar como destacado</label><div><b>Variantes y stock</b><div id="variants"></div></div><div><button type="button" id="add-variant" class="btn-secondary">+ Agregar variante</button></div><button class="btn">Agregar producto</button><p id="product-message" class="message"></p></form>
+        <div id="products"></div>
+      </div>
+      <div class="card"><h2>Pedidos</h2><div id="orders"></div></div>
+    </section>
+  </main>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+{
+  "products": [
+    {
+      "id": "prod-rem-era",
+      "name": "Remera Essential",
+      "description": "Algodón suave de uso diario.",
+      "category": "Remeras",
+      "price": 24000,
+      "previousPrice": 28000,
+      "featured": true,
+      "active": true,
+      "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+      "variants": [
+        {
+          "color": "Blanco",
+          "size": "Único",
+       "stock": 12
+        }
+      ]
+    },
+    {
+      "id": "prod-buz-ver",
+      "name": "Buzo Verde",
+      "description": "Abrigo liviano para todos los días.",
+      "category": "Abrigos",
+      "price": 52000,
+      "previousPrice": null,
+      "featured": true,
+      "active": true,
+      "image": "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=80",
+      "variants": [
+        {
+          "color": "Verde bosque",
+          "size": "M",
+          "stock": 8
+        },
+        {
+          "color": "Verde bosque",
+          "size": "L",
+          "stock": 5
+        }
+      ]
+    },
+    {
+      "id": "prod-jean-recto",
+      "name": "Jean Recto",
+      "description": "Denim azul clásico, cómodo y fácil de combinar.",
+      "category": "Pantalones",
+      "price": 68000,
+      "previousPrice": 75000,
+      "featured": true,
+      "active": true,
+      "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80",
+      "variants": [
+        {"color": "Azul denim", "size": "M", "stock": 6},
+        {"color": "Azul denim", "size": "L", "stock": 4}
+      ]
+    },
+    {
+      "id": "prod-camisa-lino",
+      "name": "Camisa Lino Natural",
+      "description": "Textura liviana y fresca para días cálidos.",
+      "category": "Camisas",
+      "price": 59000,
+      "previousPrice": null,
+      "featured": true,
+      "active": true,
+      "image": "https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=900&q=80",
+      "variants": [
+        {"color": "Natural", "size": "S", "stock": 5},
+        {"color": "Natural", "size": "M", "stock": 7}
+      ]
+    },
+    {
+      "id": "prod-gorra-negra",
+      "name": "Gorra Urbana",
+      "description": "Accesorio simple para completar cualquier look.",
+      "category": "Accesorios",
+      "price": 18000,
+      "previousPrice": null,
+      "featured": false,
+      "active": true,
+      "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=80",
+      "variants": [
+        {"color": "Negro", "size": "Único", "stock": 10}
+      ]
+    }
+  ],
+  "customers": [],
+  "orders": [],
+  "sales": [],
+  "events": []
+}

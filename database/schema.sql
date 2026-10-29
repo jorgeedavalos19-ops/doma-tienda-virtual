@@ -13,9 +13,11 @@ CREATE TABLE IF NOT EXISTS product_variants (
   UNIQUE(product_id, color, size)
 );
 CREATE TABLE IF NOT EXISTS customers (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(), name TEXT NOT NULL, email TEXT NOT NULL UNIQUE,
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(), name TEXT NOT NULL, email TEXT UNIQUE,
   phone TEXT NOT NULL, active BOOLEAN NOT NULL DEFAULT true, created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+ALTER TABLE customers ALTER COLUMN email DROP NOT NULL;
+ALTER TABLE customers ADD COLUMN IF NOT EXISTS dni_last3 TEXT NOT NULL DEFAULT '';
 CREATE TABLE IF NOT EXISTS orders (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(), customer_id UUID NOT NULL REFERENCES customers(id),
   idempotency_key TEXT NOT NULL UNIQUE, status TEXT NOT NULL DEFAULT 'PENDIENTE',

@@ -45,7 +45,7 @@ async function route(req, res) {
   if (p==='/api/health') return json(res,200,{ok:true,service:'doma-api'});
   if (p==='/api/auth/login' && method==='POST') { const b=await body(req); if (b.email!==ADMIN_EMAIL || b.password!==ADMIN_PASSWORD) return fail(res,401,'Credenciales incorrectas'); const token=crypto.randomBytes(32).toString('hex'); sessions.set(token,{email:ADMIN_EMAIL,expires:Date.now()+SESSION_TTL}); return json(res,200,{token,expiresIn:SESSION_TTL}); }
   const db=await readDb();
-  if (p==='/api/products' && method==='GET') return json(res,200,db.products.filter(x=>x.active));
+  if (p==='/api/products' && method==='GET') return json(res,200,db.products.filter(x=>x.active&&x.variants.some(v=>Number(v.stock)>0)));
   if (p==='/api/orders' && method==='POST') {
     const b=await body(req); const key=req.headers['idempotency-key']; if(!key) return fail(res,400,'Falta Idempotency-Key');
     const existing=db.orders.find(o=>o.idempotencyKey===key); if(existing) return json(res,200,existing);

@@ -16,3 +16,4 @@
 .customer-order .order-heading small{display:none}
 .customer-order-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}.customer-order-product{border:1px solid var(--line);background:var(--paper);padding:8px}.customer-order-product img{display:block;width:100%;height:120px;object-fit:cover;background:white}.customer-order-product b{display:block;margin-top:8px;font-size:12px}.customer-order-product small{display:block;margin-top:5px;letter-spacing:0;text-transform:none;font-size:11px}
 .customer-order{cursor:pointer;position:relative}.customer-order-items{display:none}.customer-order:not(.is-expanded)::after{content:'Tocá para ver los productos';display:block;margin-top:12px;color:var(--muted);font-size:11px}.customer-order.is-expanded .customer-order-items{display:grid}
+.orders-view-open .featured-carousel{display:none!important}

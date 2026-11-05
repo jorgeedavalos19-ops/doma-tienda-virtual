@@ -10,3 +10,4 @@
 .size-picker{display:grid;gap:8px}.size-picker>span{font-size:11px;font-weight:bold;text-transform:uppercase;letter-spacing:.1em}.size-options{display:flex;flex-wrap:wrap;gap:8px}.size-option{width:44px;height:44px;padding:0;border:1px solid var(--line);background:white;color:var(--ink);font-weight:bold}.size-option:hover,.size-option.selected{background:var(--green);border-color:var(--green);color:white}
 #cart-backdrop{position:fixed;inset:0;z-index:4;background:#0006}#close-cart{border:1px solid var(--line)!important;background:white!important;text-decoration:none!important;padding:8px 11px}
 .section{scroll-margin-top:92px}
+.detail-view-open .featured-carousel{display:none!important}

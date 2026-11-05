@@ -11,3 +11,4 @@
 #cart-backdrop{position:fixed;inset:0;z-index:4;background:#0006}#close-cart{border:1px solid var(--line)!important;background:white!important;text-decoration:none!important;padding:8px 11px}
 .section{scroll-margin-top:92px}
 .detail-view-open .featured-carousel{display:none!important}
+.quantity-control{display:flex;align-items:center;gap:8px;margin-top:10px}.quantity-control button{width:28px;height:28px;border:1px solid var(--line);background:white;font-size:18px;line-height:1}.quantity-control button:hover{background:var(--lime)}.quantity-control span{min-width:20px;text-align:center;font-weight:bold}

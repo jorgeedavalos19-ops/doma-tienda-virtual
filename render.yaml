@@ -2,7 +2,7 @@ services:
   - type: web
     name: doma-tienda-api
     runtime: node
-    buildCommand: npm install
+    buildCommand: npm install && npm run build
     startCommand: node server-cloud.js
     envVars:
       - key: NODE_ENV

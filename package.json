@@ -5,6 +5,7 @@
   "description": "Prototipo funcional de tienda virtual con API y persistencia centralizada.",
   "scripts": {
     "start": "node server-cloud.js",
+    "build": "npm --prefix client install && npm --prefix client run build",
     "start:local": "node server.js",
     "dev": "node --watch server-cloud.js",
     "db:check": "node scripts/check-db.js"

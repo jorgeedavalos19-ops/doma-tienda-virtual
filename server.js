@@ -35,7 +35,7 @@ function cleanProduct(input, old = {}) {
   const name = String(input.name ?? old.name ?? '').trim();
   const price = Number(input.price ?? old.price);
   if (!name || !Number.isFinite(price) || price <= 0) throw new Error('Nombre y precio válido son obligatorios');
-  const variants = Array.isArray(input.variants ?? old.variants) ? (input.variants ?? old.variants).map(v => ({color:String(v.color||'').trim(), size:String(v.size||'').trim(), stock:Math.max(0, Math.floor(Number(v.stock)||0))})).filter(v=>v.color&&v.size) : [];
+  const variants = Array.isArray(input.variants ?? old.variants) ? (input.variants ?? old.variants).map(v => ({color:String(v.color||'').trim(), size:String(v.size||'').trim(), stock:Math.max(0, Math.floor(Number(v.stock)||0)), image:String(v.image||v.imageUrl||'').trim()})).filter(v=>v.color&&v.size) : [];
   if (!variants.length) throw new Error('Debe existir al menos una variante con color y talle');
   return { ...old, name, description:String(input.description ?? old.description ?? '').trim(), category:String(input.category ?? old.category ?? 'General').trim(), price, previousPrice: input.previousPrice == null ? (old.previousPrice ?? null) : Number(input.previousPrice) || null, featured:Boolean(input.featured ?? old.featured), active:input.active === undefined ? (old.active !== false) : Boolean(input.active), image:String(input.image ?? old.image ?? ''), variants };
 }

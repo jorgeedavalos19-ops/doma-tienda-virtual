@@ -10,8 +10,10 @@ CREATE TABLE IF NOT EXISTS products (
 CREATE TABLE IF NOT EXISTS product_variants (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(), product_id UUID NOT NULL REFERENCES products(id),
   color TEXT NOT NULL, size TEXT NOT NULL, stock INTEGER NOT NULL DEFAULT 0 CHECK (stock >= 0),
+  image_url TEXT NOT NULL DEFAULT '',
   UNIQUE(product_id, color, size)
 );
+ALTER TABLE product_variants ADD COLUMN IF NOT EXISTS image_url TEXT NOT NULL DEFAULT '';
 CREATE TABLE IF NOT EXISTS customers (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(), name TEXT NOT NULL, email TEXT UNIQUE,
   phone TEXT NOT NULL, active BOOLEAN NOT NULL DEFAULT true, created_at TIMESTAMPTZ NOT NULL DEFAULT now()

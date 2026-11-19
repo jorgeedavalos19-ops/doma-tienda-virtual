@@ -77,9 +77,10 @@ function App() {
 
 function ProductDetail({ product, onBack, onAdd }) {
   const colors = [...new Set(product.variants?.map(v => v.color))];
-  const sizes = [...new Set(product.variants?.map(v => v.size))];
   const [color, setColor] = useState(colors[0] || '');
   const [size, setSize] = useState('');
+  const sizes = useMemo(() => [...new Set(product.variants?.filter(v => v.color === color).map(v => v.size))], [product, color]);
+  useEffect(() => { if (!sizes.includes(size)) setSize(''); }, [sizes, size]);
   const image = product.variants?.find(v => v.color === color && v.image)?.image || product.image;
   const stock = variantStock(product, color, size);
   return <section className="section product-detail"><button className="back-link" onClick={onBack}>← Volver al catálogo</button><div className="detail-layout"><div className="detail-image"><img src={image} alt={product.name} /></div><div className="detail-copy"><small>{product.category}</small><h1>{product.name}</h1><p>{product.description || 'Sin descripción disponible.'}</p><div className="detail-price">{money(product.price)}</div><div className="detail-variants"><div className="color-picker-label">Color</div><div className="color-picker" role="group" aria-label="Colores disponibles">{colors.map(item => <button key={item} type="button" className={`color-option ${item === color ? 'selected' : ''}`} style={{ '--swatch-color': colorValue(item) }} title={item} aria-label={`Color ${item}`} onClick={() => setColor(item)}></button>)}</div><div className="size-picker"><span>Talle</span><div className="size-options">{sizes.map(item => <button key={item} type="button" className={`size-option ${item === size ? 'selected' : ''}`} onClick={() => setSize(item)}>{item}</button>)}</div></div></div><small className="stock detail-stock">{size ? stockText(stock) : 'Seleccioná un talle'}</small><button className="button" onClick={() => onAdd(product, color, size)}>Agregar al carrito</button><div className="detail-info"><b>Stock total</b><span>{product.variants?.reduce((sum, item) => sum + Number(item.stock || 0), 0)} unidades</span></div></div></div></section>;

@@ -49,3 +49,12 @@
   color: white;
   transform: translateY(-2px);
 }
+
+.header-actions { display:flex; align-items:center; gap:12px; }
+.search-trigger { border:0; background:transparent; color:var(--ink); font-size:27px; line-height:1; padding:4px 7px; cursor:pointer; transition:transform .2s ease, color .2s ease; }
+.search-trigger:hover,.search-trigger[aria-expanded="true"] { color:var(--green); transform:scale(1.12); }
+.search-panel { position:absolute; z-index:12; top:64px; right:7%; display:flex; align-items:center; gap:8px; width:min(310px,80vw); padding:8px 12px; background:var(--paper); border:1px solid var(--line); box-shadow:0 8px 24px #20241f1c; animation:searchPanelIn .22s ease both; }
+.search-panel span { font-size:24px; color:var(--muted); }
+.search-panel input { min-width:0; width:100%; border:0; outline:0; background:transparent; color:var(--ink); padding:7px 2px; }
+@keyframes searchPanelIn { from { opacity:0; transform:translateY(-8px) scale(.96); } to { opacity:1; transform:translateY(0) scale(1); } }
+@media(max-width:520px){.header-actions{gap:4px}.search-panel{right:5%;top:62px}.search-trigger{font-size:25px}}

@@ -1,0 +1,19 @@
+.toast.error {
+  background: #b43b34;
+  border: 1px solid #e7a39d;
+  box-shadow: 0 10px 28px #7b221e66;
+  animation: errorToastIn .55s cubic-bezier(.2,.85,.3,1.35) both, errorToastShake .42s .28s ease-in-out;
+}
+
+@keyframes errorToastIn {
+  from { opacity: 0; transform: translate(-50%, 28px) scale(.82) rotate(-2deg); }
+  65% { opacity: 1; transform: translate(-50%, -5px) scale(1.04) rotate(1deg); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1) rotate(0); }
+}
+
+@keyframes errorToastShake {
+  0%, 100% { margin-left: 0; }
+  25% { margin-left: -8px; }
+  50% { margin-left: 8px; }
+  75% { margin-left: -4px; }
+}

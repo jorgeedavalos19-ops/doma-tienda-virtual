@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../../public/styles.css';
 import '../../public/carousel.css';
+import './toast.css';
 
 const money = value => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(value);
 const esc = value => String(value ?? '');
@@ -31,9 +32,10 @@ function App() {
   const [checkout, setCheckout] = useState(false);
   const [orders, setOrders] = useState(false);
   const [toast, setToast] = useState('');
+  const [toastType, setToastType] = useState('success');
   const [heroIndex, setHeroIndex] = useState(0);
 
-  const notify = message => { setToast(message); window.clearTimeout(notify.timer); notify.timer = window.setTimeout(() => setToast(''), 2800); };
+  const notify = (message, type = 'success') => { setToastType(type); setToast(message); window.clearTimeout(notify.timer); notify.timer = window.setTimeout(() => setToast(''), 2800); };
   const saveCart = next => { setCart(next); localStorage.setItem('doma-cart-v2', JSON.stringify(next)); };
   const categories = useMemo(() => ['Todos', ...new Set(products.map(p => p.category).filter(Boolean))], [products]);
   const featured = useMemo(() => products.filter(p => p.featured && p.variants?.some(v => Number(v.stock) > 0)), [products]);
@@ -49,9 +51,9 @@ function App() {
   const goCatalog = () => { setDetail(null); setOrders(false); window.scrollTo({ top: 0, behavior: 'smooth' }); };
   const chooseCategory = value => { setCategory(value); setDetail(null); setOrders(false); setMenuOpen(false); window.setTimeout(() => document.querySelector('#products')?.classList.add('catalog-changing'), 0); window.setTimeout(() => document.querySelector('#products')?.classList.remove('catalog-changing'), 750); };
   const addToCart = (product, color, size) => {
-    if (!size) return notify('Seleccioná un talle para continuar');
+    if (!size) return notify('Seleccioná un talle para continuar', 'error');
     const variant = product.variants?.find(v => v.color === color && v.size === size);
-    if (!variant || !variant.stock) return notify('Variante sin stock');
+    if (!variant || !variant.stock) return notify('Variante sin stock', 'error');
     const old = cart[product.id];
     saveCart({ ...cart, [product.id]: { productId: product.id, name: product.name, color, size, quantity: (old?.quantity || 0) + 1, unitPrice: product.price } });
     notify('Producto agregado');
@@ -69,7 +71,7 @@ function App() {
     </main>
     <button id="cart-float" className="cart-float" aria-label="Abrir bolsa de compras" onClick={() => { setCartOpen(true); setCheckout(false); }}>🛍️ <span>{cartCount}</span></button>
     <CartDrawer open={cartOpen} checkout={checkout} setCheckout={setCheckout} close={() => setCartOpen(false)} cart={cart} entries={cartEntries} total={cartTotal} changeQuantity={changeQuantity} removeItem={removeCartItem} onSuccess={async () => { setCart({}); localStorage.removeItem('doma-cart-v2'); setCheckout(false); setCartOpen(false); setProducts(await api('/api/products')); notify('Pedido recibido'); }} />
-    {toast && <div className="toast show">{toast}</div>}
+    {toast && <div className={`toast show ${toastType}`}>{toast}</div>}
   </>;
 }
 

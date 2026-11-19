@@ -17,3 +17,22 @@
   50% { margin-left: 8px; }
   75% { margin-left: -4px; }
 }
+
+.cart-back-button {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  padding: 11px 14px;
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.cart-back-button:hover,
+.cart-back-button:focus-visible {
+  background: var(--green);
+  color: white;
+  transform: translateY(-2px);
+}

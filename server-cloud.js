@@ -41,4 +41,9 @@ async function initSchema(){
   ];
   for(const p of samples){const exists=await pool.query('SELECT id FROM products WHERE name=$1 LIMIT 1',[p.name]);if(exists.rowCount)continue;const row=(await pool.query('INSERT INTO products(name,description,category,price,previous_price,image_url,featured,active) VALUES($1,$2,$3,$4,$5,$6,$7,true) RETURNING id',[p.name,p.description,p.category,p.price,p.previousPrice,p.image,p.featured])).rows[0];for(const v of p.variants)await pool.query('INSERT INTO product_variants(product_id,color,size,stock) VALUES($1,$2,$3,$4)',[row.id,v[0],v[1],v[2]])}
 }
-initSchema().then(()=>app.listen(PORT,()=>console.log(`DOMA cloud API disponible en puerto ${PORT}`))).catch(error=>{console.error('No se pudo inicializar PostgreSQL',error);process.exit(1)});
+app.listen(PORT,()=>{
+  console.log(`DOMA cloud API disponible en puerto ${PORT}`);
+  initSchema().catch(error=>{
+    console.error('No se pudo inicializar PostgreSQL',error);
+  });
+});
